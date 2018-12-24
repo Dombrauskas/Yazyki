@@ -17,18 +17,24 @@ class Alfabeto {
             '\u0422', '\u0423', '\u0424', '\u0425', '\u0426', '\u0427', '\u0428',
             '\u0429', '\u042A', '\u042B', '\u042C', '\u042D', '\u042E', '\u042F' };
         int i = 0;
+        char ch = '\u0401';
         
-        System.out.println("\nAlfabeto Cirilico");
         for (char col : Cirilico) {
             System.out.print(col);
-            col = (char) ((int) col | 32);
-            System.out.print("" + col + "\t");
-            i++;
-            if (i == 10) {
-                System.out.println();
-                i = 0;
+            if (col == ch) {
+                col = '\u0451';
+                System.out.print("" + col + "\t");
+                i++;
+            } else {
+                col = (char) ((int) col + 32);
+                System.out.print("" + col + "\t");
+                i++;
+                if (i == 10) {
+                    System.out.println();
+                    i = 0;
+                }
             }
         }
-        System.out.println("\n");
+        System.out.println();
     }
 }

@@ -33,6 +33,9 @@ class Convert {
                 case 'b':
                     xh[i] = '\u0431';
                     break;
+                // Letra C tem muitas variações: Chico, Chaves, Richard...
+                // Não completamente (ou decentemente) abordados ainda...
+                // 27.02.19 - 20:21 MF.
                 case 'C':
                     xh[i] = '\u041A';
                     break;
@@ -40,8 +43,7 @@ class Convert {
                     if (xh[i+1] == 'h') {
                         xh[i] = '\u0449';
                         xh[i+1] = '\u044C';
-                    }
-                    else 
+                    } else 
                         xh[i] = '\u043A';
                     break;
                 case 'D':
@@ -160,12 +162,44 @@ class Convert {
                     xh[i] = '\u0421';
                     break;
                 case 's':
-                    if (xh[i+1] == 'h') {
-                        xh[i] = '\u0448';
-                        xh[i+1] = '\u044C';
+                    boolean z = false, Z = false;
+                    // Alguns casos não estão funcionando corretamente
+                    // 27.02 20:49 MF
+                    switch (xh[i-1]) {
+                        case 'a':
+                        case 'e':
+                        case 'i':
+                        case 'o':
+                        case 'u':
+                        case 'A':
+                        case 'E':
+                        case 'I':
+                        case 'O':
+                        case 'U':
+                            z = true;
+                            System.out.println(z);
+                            break;
                     }
-                    else 
-                        xh[i] = '\u0441';
+                    if (z)
+                        switch(xh[i+1]) {
+                            case 'a':
+                            case 'e':
+                            case 'i':
+                            case 'o':
+                            case 'u':
+                                Z = true;
+                                break;
+                        }
+                    System.out.println("status "+z);
+                    if (Z)
+                        xh[i] = '\u0437';
+                    if (!z) {
+                        if (xh[i+1] == 'h') {
+                            xh[i] = '\u0448';
+                            xh[i+1] = '\u044C';
+                        } else
+                            xh[i] = '\u0441';
+                    }
                     break;
                 case 'U':
                     xh[i] = '\u0423';

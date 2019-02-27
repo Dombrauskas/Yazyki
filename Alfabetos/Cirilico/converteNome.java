@@ -3,17 +3,23 @@ package Cirilico;
 /**
  *
  * @author Mauricio
- */
+ * Converte nomes escritos no alfabeto latino para o alfabeto cirilico.
+ * Converts names written in the Latin alphabet to the Cyrillic alphabet.
+*/
 class Convert {
     char[] xh;
     
     Convert (int size, char[] n) {
         xh = new char[size];
         xh = n;
-//        char ch;
-        
-        for (int i = 0; i < size; i++) {
-//            System.out.println("Letra da vez " + xh[i] + " - " + i);
+    }
+    
+    // Converte cada caracter individualmente;
+    // alguns casos especiais são atendidos.
+    // Converts each character individually;
+    // some special case are dealt with.
+    void trad(char[] xh) {
+        for (int i = 0; i < xh.length; i++) {
             switch (xh[i]) {
                 case 'A':
                     xh[i] = '\u0410';
@@ -68,16 +74,16 @@ class Convert {
                     xh[i] = '\u0418';
                     break;
                 case 'i':
-                    n[i] = '\u0438';
-                    switch (n[i+1]) {
+                    xh[i] = '\u0438';
+                    switch (xh[i+1]) {
                         case 'a':
-                            n[i+1] = '\u044F';
+                            xh[i+1] = '\u044F';
                             continue;
                         case 'u':
-                            n[i+1] = '\u044E';
+                            xh[i+1] = '\u044E';
                             continue;
                         default:
-                            n[i] = '\u0438';
+                            xh[i] = '\u0438';
                     }
                     break;
                 case 'J':
@@ -127,7 +133,10 @@ class Convert {
                     xh[i] = '\u0423';
                     break;
                 case 'u':
-                    xh[i] = '\u0443';
+                    if (xh[i-1] == '\u0410' | xh[i-1] == '\u0430')
+                        xh[i] = '\u0432';
+                    else 
+                        xh[i] = '\u0443';
                     break;
                 case 'V':
                     xh[i] = '\u0412';
@@ -175,13 +184,29 @@ class Convert {
                 case 'm':
                     xh[i] = '\u043C';
                     break;
-//                default:
-  //                  continue;
             }
         }
         System.out.print("Seu nome em russo: ");
     }
     
+    // Método para excluir os "ь" do nome. ->> Ainda excluindo o último não pode excluí-lo).
+    // Method to peel the "ь" off the name.
+    void limpa(Convert s) {
+        int i;
+        boolean flag = false;
+        for (i = 0; i < s.xh.length - 1; ++i)
+            if (s.xh[i] == '\u044C') {
+                flag = true;
+                break;
+            }
+            
+        if (flag)
+            for (int j = i; j < s.xh.length - 1; ++j)
+                s.xh[j] = s.xh[j+1];
+    }
+}
+
+public class Main {
     public static void main(String []args) 
         throws java.io.IOException {
         char []name = new char[10];
@@ -191,10 +216,10 @@ class Convert {
             name[i] = (char) System.in.read();
             if (name[i] == '\n') break;
         }
-//        i -=1;
-//        System.out.print(name);
         
         Convert cv = new Convert(i, name);
-        System.out.print(cv.xh);
-     }
+        cv.trad(name);
+        //cv.limpa(cv);
+        System.out.println(cv.xh);
+    }
 }

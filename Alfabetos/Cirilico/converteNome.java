@@ -37,7 +37,12 @@ class Convert {
                     xh[i] = '\u041A';
                     break;
                 case 'c':
-                    xh[i] = '\u0441';
+                    if (xh[i+1] == 'h') {
+                        xh[i] = '\u0449';
+                        xh[i+1] = '\u044C';
+                    }
+                    else 
+                        xh[i] = '\u043A';
                     break;
                 case 'D':
                     xh[i] = '\u0414';
@@ -58,7 +63,10 @@ class Convert {
                     xh[i] = '\u0444';
                     break;
                 case 'G':
-                    xh[i] = '\u0413';
+                    if (xh[i+1] == 'i') 
+                        xh[i] = '\u0416';
+                    else 
+                        xh[i] = '\u0413';
                     break;
                 case 'g':
                     xh[i] = '\u0433';
@@ -112,10 +120,35 @@ class Convert {
                     xh[i] = '\u043D';
                     break;
                 case 'P':
-                    xh[i] = '\u041F';
+                    if (xh[i+1] == 'h') {
+                        xh[i] = '\u0424';
+                        xh[i+1] = '\u044C';
+                    }
+                    else 
+                        xh[i] = '\u041F';
                     break;
                 case 'p':
-                    xh[i] = '\u043F';
+                    switch(xh[i+1]) {
+                        case '\n':
+                            xh[i] = '\u043F';
+                            xh[i+1] = '\u044C';
+                            break;
+                        case 'h':
+                            xh[i] = '\u0444';
+                            xh[i+1] = '\u044C';
+                            break;
+                        default:
+                            xh[i] = '\u043F';
+                    }
+                    /*
+                    if (xh[i+1] == '\n') 
+                        xh[i+1] = '\u044C';
+                    else if (xh[i+1] == 'h') {
+                        xh[i] = '\u0444';
+                        xh[i+1] = '\u044C';
+                    }
+                    else 
+                        xh[i] = '\u043F';*/
                     break;
                 case 'R':
                     xh[i] = '\u0420';
@@ -127,7 +160,12 @@ class Convert {
                     xh[i] = '\u0421';
                     break;
                 case 's':
-                    xh[i] = '\u0441';
+                    if (xh[i+1] == 'h') {
+                        xh[i] = '\u0448';
+                        xh[i+1] = '\u044C';
+                    }
+                    else 
+                        xh[i] = '\u0441';
                     break;
                 case 'U':
                     xh[i] = '\u0423';
@@ -178,11 +216,24 @@ class Convert {
                 case 'z':
                     xh[i] = '\u0437';
                     break;
+                case 'T':
+                    xh[i] = '\u0422';
+                    break;
                 case 't':
+                    if (xh[i+1] == '\n') xh[i+1] = '\u044C';
                     xh[i] = '\u0442';
+                    break;
+                case 'M':
+                    xh[i] = '\u041C';
                     break;
                 case 'm':
                     xh[i] = '\u043C';
+                    break;
+                case 'É':
+                    xh[i] = '\u042D';
+                    break;
+                case 'é':
+                    xh[i] = '\u044D';
                     break;
             }
         }
@@ -206,7 +257,7 @@ class Convert {
     }
 }
 
-public class Main {
+public class NovoClass {
     public static void main(String []args) 
         throws java.io.IOException {
         char []name = new char[10];
@@ -219,7 +270,17 @@ public class Main {
         
         Convert cv = new Convert(i, name);
         cv.trad(name);
-        //cv.limpa(cv);
+        
+        // Se o nome em russo tiver um "ь" entre a segunda e a penúltima posição,
+        // o objeto que contém o nome é passado para o método 'limpa' que os removerá.
+        // If the Russian name has a "ь" between the second and before-last position
+        // the object which has the name is passed to the method 'limpa' that will
+        // wipe it off.
+        for (int j = 0; j < i; j++) 
+            if (cv.xh[j] == '\u044C') {
+                cv.limpa(cv);
+                break;
+            }
         System.out.println(cv.xh);
     }
 }

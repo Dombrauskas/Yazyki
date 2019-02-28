@@ -121,6 +121,12 @@ class Convert {
                 case 'n':
                     xh[i] = '\u043D';
                     break;
+                case 'O':
+                    xh[i] = '\u041E';
+                    break;
+                case 'o':
+                    xh[i] = '\u043E';
+                    break;
                 case 'P':
                     if (xh[i+1] == 'h') {
                         xh[i] = '\u0424';
@@ -156,30 +162,39 @@ class Convert {
                     xh[i] = '\u0420';
                     break;
                 case 'r':
+                    // 'r' mudo no final e.g. Алеxандр
+                    // avaliar duas posições após o 'r' se for '\n' é 'r' mudo.
+                    // Possível necessidade de avaliar a letra anterior também.
                     xh[i] = '\u0440';
                     break;
                 case 'S':
                     xh[i] = '\u0421';
                     break;
                 case 's':
-                    boolean z = false, Z = false;
-                    // Alguns casos não estão funcionando corretamente
-                    // 27.02 20:49 MF
+                    boolean z, Z = false;
+                    // Avalia a primeira condição de um 's' ter som de 'z'.
+                    // 28.02 10:56 MF
                     switch (xh[i-1]) {
-                        case 'a':
-                        case 'e':
-                        case 'i':
-                        case 'o':
-                        case 'u':
-                        case 'A':
-                        case 'E':
-                        case 'I':
-                        case 'O':
-                        case 'U':
+                        case '\u0410':
+                        case '\u0430':
+                        case '\u0415':
+                        case '\u0435':
+                        case '\u0418':
+                        case '\u0438':
+                        case '\u0419':
+                        case '\u0439':
+                        case '\u041E':
+                        case '\u043E':
+                        case '\u0423':
+                        case '\u0443':
                             z = true;
-                            System.out.println(z);
                             break;
+                        default:
+                            z = false;
                     }
+                    //System.out.println("Pós switch 1 " + z);
+                    // Se a primeira condição for verdadeira a segunda condição
+                    // será avaliada.
                     if (z)
                         switch(xh[i+1]) {
                             case 'a':
@@ -187,10 +202,21 @@ class Convert {
                             case 'i':
                             case 'o':
                             case 'u':
+                            case 'á':
+                            case 'é':
+                            case 'í':
+                            case 'ó':
+                            case 'ú':
+                            case 'â':
+                            case 'ê':
+                            case 'ô':
                                 Z = true;
                                 break;
+                            default:
+                                Z = false;
                         }
-                    System.out.println("status "+z);
+                    //System.out.println("Pós switch 2 " + z);
+                    // Se ambas forem verdadeiras o 's' tem som de 'z'.
                     if (Z)
                         xh[i] = '\u0437';
                     if (!z) {
@@ -269,6 +295,7 @@ class Convert {
                 case 'é':
                     xh[i] = '\u044D';
                     break;
+                // Não há case para 'X', 'x', 'W', 'w', 'Q' e 'q'.
             }
         }
         System.out.print("Seu nome em russo: ");

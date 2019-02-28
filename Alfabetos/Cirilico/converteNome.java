@@ -73,6 +73,7 @@ class Convert {
                 case 'g':
                     xh[i] = '\u0433';
                     break;
+                // Analisar o 'H' com mais profundidade.
                 case 'H':
                     if (xh[i+1] == 'a') xh[i] = '\u0425';
                     else xh[i] = '\u042C';

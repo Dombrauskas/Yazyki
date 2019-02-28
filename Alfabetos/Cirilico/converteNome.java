@@ -79,6 +79,14 @@ class Convert {
                     else xh[i] = '\u042C';
                     break;
                 case 'h':
+                    /*switch (xh[i - 1]) {
+                        case '\u043B':
+                        case '\u043D':
+                            xh[i] = '\u0438';
+                            break;
+                        default:
+                            xh[i] = '\u044C';
+                    }*/
                     xh[i] = '\u044C';
                     break;
                 case 'I':
@@ -220,7 +228,7 @@ class Convert {
                     // Se ambas forem verdadeiras o 's' tem som de 'z'.
                     if (Z)
                         xh[i] = '\u0437';
-                    if (!z) {
+                    if (!Z) {
                         if (xh[i+1] == 'h') {
                             xh[i] = '\u0448';
                             xh[i+1] = '\u044C';
@@ -232,10 +240,15 @@ class Convert {
                     xh[i] = '\u0423';
                     break;
                 case 'u':
-                    if (xh[i-1] == '\u0410' | xh[i-1] == '\u0430')
-                        xh[i] = '\u0432';
-                    else 
-                        xh[i] = '\u0443';
+                    boolean flag = false;
+                    if (xh[i - 1] == '\u0413') flag = true;
+                    if (flag) 
+                        if (xh[i+1] == 'i') {
+                            xh[i] = '\u044C';
+                            xh[i+1] = '\u0438';
+                            break;
+                        }
+                    xh[i] = '\u0443';
                     break;
                 case 'V':
                     xh[i] = '\u0412';

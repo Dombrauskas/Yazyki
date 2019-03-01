@@ -174,6 +174,9 @@ class Convert {
                     // 'r' mudo no final e.g. Алеxандр
                     // avaliar duas posições após o 'r' se for '\n' é 'r' mudo.
                     // Possível necessidade de avaliar a letra anterior também.
+                    if (xh[i+1] == 'e')
+                        if (xh[i-1] == '\u0434')
+                            xh[i+1] = ' ';
                     xh[i] = '\u0440';
                     break;
                 case 'S':

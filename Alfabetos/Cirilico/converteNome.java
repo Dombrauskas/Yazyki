@@ -34,10 +34,27 @@ class Convert {
                     xh[i] = '\u0431';
                     break;
                 // Letra C tem muitas variações: Chico, Chaves, Richard...
-                // Não completamente (ou decentemente) abordados ainda...
-                // 27.02.19 - 20:21 MF.
+                // Não completamente abordados ainda... (sob avaliação)
+                // 01.03.19 - 21:39 MF.
                 case 'C':
-                    xh[i] = '\u041A';
+                    boolean W = false;
+                    if (xh[i+1] == 'h') 
+                        switch (xh[i+2]) {
+                            case 'a':
+                            case 'e':
+                            case 'i':
+                            case 'o':
+                            case 'u':
+                                W = true;
+                                break;
+                            default:
+                                W = false;
+                        }
+                    if (W & xh[i+1] == 'h') {
+                        xh[i] = '\u0428';
+                        xh[i+1] = '\u044C';
+                    } else
+                        xh[i] = '\u041A';
                     break;
                 case 'c':
                     if (xh[i+1] == 'h') {
@@ -312,7 +329,15 @@ class Convert {
                 case 'é':
                     xh[i] = '\u044D';
                     break;
-                // Não há case para 'X', 'x', 'W', 'w', 'Q' e 'q'.
+                // Os casos de W e w são apenas para sons de V.
+                // Possibilidade para sons de U não são verificados.
+                case 'W':
+                    xh[i] = '\u0412';
+                    break;
+                case 'w':
+                    xh[i] = '\u0432';
+                    break;
+                // Não há case para 'X', 'x', 'Q' e 'q'.
             }
         }
         System.out.print("Seu nome em russo: ");

@@ -50,7 +50,7 @@ class Convert {
                             default:
                                 W = false;
                         }
-                    if (W & xh[i+1] == 'h') {
+                    if (W && xh[i+1] == 'h') {
                         xh[i] = '\u0428';
                         xh[i+1] = '\u044C';
                     } else
@@ -276,6 +276,8 @@ class Convert {
                 case 'v':
                     xh[i] = '\u0432';
                     break;
+                // Possíveis mudanças em Y;
+                // 01.03 22:39 MF
                 case 'Y':
                     xh[i] = ' ';
                     switch (xh[i+1]) {
@@ -370,6 +372,10 @@ public class NovoClass {
             name[i] = (char) System.in.read();
             if (name[i] == '\n') break;
         }
+        
+        // Garante que a primeira letra seja sempre maiúscula.
+        // Ensure the first letter always to be in Capital Case.
+        name[0] = Character.toUpperCase(name[0];
         
         Convert cv = new Convert(i, name);
         cv.trad(name);

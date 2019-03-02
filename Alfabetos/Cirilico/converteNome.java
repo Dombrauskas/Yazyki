@@ -370,6 +370,7 @@ public class NovoClass {
         int i;
         for (i = 0; i < 10; ++i) {
             name[i] = (char) System.in.read();
+            if (i == 9) name[i] = '\n';
             if (name[i] == '\n') break;
         }
         

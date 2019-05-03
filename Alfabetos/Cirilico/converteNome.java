@@ -376,7 +376,7 @@ public class NovoClass {
         
         // Garante que a primeira letra seja sempre maiúscula.
         // Ensure the first letter always to be in Capital Case.
-        name[0] = Character.toUpperCase(name[0];
+        name[0] = Character.toUpperCase(name[0]);
         // Garante que as seguintes letras sejam minúsculas.
         // Ensure the following letters to be in lower case.
         for (int j = 0; j < name.length; ++j) 

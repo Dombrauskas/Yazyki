@@ -12,6 +12,11 @@ class convert {
         hj = new char[size];
         hj = name;
     }
+    
+    void silabas(int size, char[] name) {
+        //super(size, name);
+    }
+    
     /*
     char[] Hangul = { '\u1100', '\u1102', '\u1103', '\u1105', '\u1106',
         '\u1107', '\u1109', '\u110B', '\u110C', '\u110E', '\u110F', '\u1110',
@@ -20,6 +25,7 @@ class convert {
         '\u110A', '\u110D', '\u1162', '\u1164', '\u1166', '\u1168', '\u116C',
         '\u1171', '\u1174', '\u116A', '\u116F', '\u116B', '\u1170' };
     */
+    
     void trad(char[] hj) {
         for (int i = 0; i < size; i++) {
             switch(hj[i]) {

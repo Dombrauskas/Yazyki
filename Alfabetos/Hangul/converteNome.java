@@ -1,8 +1,8 @@
 /**
- *
- *
- *
- *
+ * 
+ * @author Maurício
+ * 
+ * 
 */
 
 class convert {
@@ -24,6 +24,7 @@ class convert {
         for (int i = 0; i < size; i++) {
             switch(hj[i]) {
                 case 'A':
+                    hj[i] = '\uc544';
                 break;
                 case 'B':
                 break;

@@ -14,7 +14,7 @@ class convert {
     }
     
     void silabas(int size, char[] name) {
-        //super(size, name);
+        //convert(size, name);
     }
     
     /*

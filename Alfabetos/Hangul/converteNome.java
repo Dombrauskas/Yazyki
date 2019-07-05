@@ -13,6 +13,10 @@ class convert {
         hj = name;
     }
     
+    
+    // Tenho que separar a string em vetores menores de sílabas. Criar alguns 
+    // vetores (quantidade de vogais no nome) para armazenar cada sílaba e
+    // assim poder definir os blocos de sílabas hangul do nome.
     void silabas(int size, char[] name) {
         //convert(size, name);
     }

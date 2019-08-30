@@ -141,6 +141,12 @@ class Convert {
                     if (xh[i+1] == '\n') xh[i+1] = '\u044C';
                     xh[i] = '\u043B';
                     break;
+                case 'M':
+                    xh[i] = '\u041C';
+                    break;
+                case 'm':
+                    xh[i] = '\u043C';
+                    break;    
                 case 'N':
                     xh[i] = '\u041D';
                     break;
@@ -319,12 +325,6 @@ class Convert {
                     if (xh[i+1] == '\n') xh[i+1] = '\u044C';
                     xh[i] = '\u0442';
                     break;
-                case 'M':
-                    xh[i] = '\u041C';
-                    break;
-                case 'm':
-                    xh[i] = '\u043C';
-                    break;
                 case 'É':
                     xh[i] = '\u042D';
                     break;
@@ -338,6 +338,12 @@ class Convert {
                     break;
                 case 'w':
                     xh[i] = '\u0432';
+                    break;
+                case 'É':
+                    xh[i] = '\u042D';
+                    break;
+                case 'é':
+                    xh[i] = '\u044D';
                     break;
                 // Não há case para 'X', 'x', 'Q' e 'q'.
             }

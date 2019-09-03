@@ -1,7 +1,8 @@
 /**
  * 
  * @author Maurício
- * 
+ * Mostra a forma adaptada de nomes escritos no alfabeto hangul (coreano) a partir
+ * do alfabeto latino (português neste programa).
  * 
 */
 
@@ -19,6 +20,30 @@ class convert {
     // assim poder definir os blocos de sílabas hangul do nome.
     void silabas(int size, char[] name) {
         //convert(size, name);
+        
+        //Ainda não está bom
+        int i = 0; 
+        int a = 0;
+        boolean flag = false;
+        char[] sil = new char[10];
+
+        for (; i < sil.length; i++) {
+            if ((a == i) && (a > 0)) {
+                flag = true;
+                sil[i] = '.';
+                continue;
+            }
+            sil[i] = nm[i];
+            if (nm[i] == 'A') {
+                a = i + 1;
+                if (flag) sil[i] = nm[i];
+                else sil[i] = nm[--i];
+                continue;
+            }
+        }
+
+        for (char s : sil)
+        System.out.print(s);
     }
     
     /*
@@ -92,13 +117,13 @@ class convert {
 }
 
 
-class Main {
+class converteNome {
     public static void main(String[] args) 
         throws java.io.IOException {
     
         char[] name = new char[10];
-
         int i;
+        
         for (i = 0; i < 10; ++i) {
             name[i] = (char) System.in.read();
             if (i == 9) name[i] = '\n';
